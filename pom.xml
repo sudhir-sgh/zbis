@@ -5,12 +5,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>zopper-bis</groupId>
-  <artifactId>zopper-brand-integration-service</artifactId>
+  <groupId>zopper-bsi</groupId>
+  <artifactId>zopper-brand-service-integration</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>Zopper- BIS</name>
-  <description>Zopper | Brand Integration Service</description>
+  <name>Zopper- BSI</name>
+  <description>Zopper | Brand Service Integration</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
