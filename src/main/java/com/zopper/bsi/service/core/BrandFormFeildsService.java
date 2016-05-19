@@ -1,4 +1,4 @@
-package com.zopper.bsi.service;
+package com.zopper.bsi.service.core;
 
 import com.zopper.bsi.models.Brand;
 import com.zopper.bsi.models.BrandFormFeilds;

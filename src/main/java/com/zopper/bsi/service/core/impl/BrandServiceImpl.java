@@ -1,8 +1,8 @@
-package com.zopper.bsi.service.impl;
+package com.zopper.bsi.service.core.impl;
 
 import com.zopper.bsi.models.Brand;
 import com.zopper.bsi.dao.BrandDao;
-import com.zopper.bsi.service.BrandService;
+import com.zopper.bsi.service.core.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

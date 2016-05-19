@@ -2,7 +2,7 @@ package com.zopper.bsi.controllers;
 
 import com.zopper.bsi.models.Brand;
 import com.zopper.bsi.dao.BrandDao;
-import com.zopper.bsi.service.BrandService;
+import com.zopper.bsi.service.core.BrandService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

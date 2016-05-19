@@ -3,7 +3,7 @@ package com.zopper.bsi.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zopper.bsi.models.BrandFormFeilds;
 import com.zopper.bsi.request.BrandFormFeildsRequest;
-import com.zopper.bsi.service.BrandFormFeildsService;
+import com.zopper.bsi.service.core.BrandFormFeildsService;
 import com.zopper.bsi.utils.AppUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
