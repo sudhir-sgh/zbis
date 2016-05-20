@@ -1,17 +1,23 @@
 package com.zopper.bsi.controllers;
 
+import javax.validation.Valid;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.zopper.bsi.request.BrandServiceRequest;
+import com.zopper.bsi.response.BrandServiceResponse;
 import com.zopper.bsi.response.OrderData;
 import com.zopper.bsi.service.core.ServiceOnboardSummaryService;
 import com.zopper.bsi.utils.AppConstants;
@@ -65,6 +71,14 @@ public class ServiceRequestController {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/request", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<BrandServiceResponse> requestService(
+			@RequestBody @Valid BrandServiceRequest brandServiceRequest, BindingResult bindingResult) 
+	{
+		BrandServiceResponse brandServiceResponse = null;
+		return new ResponseEntity<BrandServiceResponse>(brandServiceResponse, HttpStatus.OK);
 	}
 
 }

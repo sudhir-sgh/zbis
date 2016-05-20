@@ -1,9 +1,16 @@
 package com.zopper.bsi.models;
 
-import com.zopper.bsi.enums.StatusCode;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import java.time.Clock;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
+
+import com.zopper.bsi.enums.StatusCode;
 
 /**
  * Generic columns for all table
@@ -48,11 +55,11 @@ public abstract class BaseModel implements Serializable {
 	{
 		super();
 		if(id == null) {
-			this.createdAt = System.currentTimeMillis();
+			this.createdAt = Clock.systemUTC().millis();
 			//this.createdBy = LoggedInUserDetails.getUserId();
 			this.statusCode = StatusCode.ACTIVE.getKey();
 		}
-		this.lastUpdatedAt = System.currentTimeMillis();
+		this.lastUpdatedAt = Clock.systemUTC().millis();
 		//this.lastUpdatedBy = LoggedInUserDetails.getUserId();
 	}
 
