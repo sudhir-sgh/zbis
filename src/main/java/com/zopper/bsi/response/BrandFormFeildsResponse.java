@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BrandFormFeildsResponse {
 
-    String displyLabel;
+    String displayLabel;
     String paramKey;
     FormDataType datatype;
     Boolean required;
@@ -23,12 +23,12 @@ public class BrandFormFeildsResponse {
     String[] options;
     String defaultValue;
 
-    public String getDisplyLabel() {
-        return displyLabel;
+    public String getDisplayLabel() {
+        return displayLabel;
     }
 
-    public void setDisplyLabel(String displyLabel) {
-        this.displyLabel = displyLabel;
+    public void setDisplayLabel(String displayLabel) {
+        this.displayLabel = displayLabel;
     }
 
     public String getParamKey() {
@@ -100,7 +100,7 @@ public class BrandFormFeildsResponse {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("displyLabel", displyLabel)
+                .append("displayLabel", displayLabel)
                 .append("paramKey", paramKey)
                 .append("datatype", datatype)
                 .append("required", required)

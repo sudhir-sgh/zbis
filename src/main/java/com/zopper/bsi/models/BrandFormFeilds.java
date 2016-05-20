@@ -17,7 +17,7 @@ import javax.persistence.Table;
 public class BrandFormFeilds extends BaseModel{
 
     @Column(name = "form_display_label")
-    String displyLabel;
+    String displayLabel;
 
     @Column(name = "form_param_key")
     String paramKey;
@@ -38,16 +38,6 @@ public class BrandFormFeilds extends BaseModel{
     Long brandId;
     @Column(name = "brand_category")
     String brandCategory;
-
-
-
-    public String getDisplyLabel() {
-        return displyLabel;
-    }
-
-    public void setDisplyLabel(String displyLabel) {
-        this.displyLabel = displyLabel;
-    }
 
     public String getParamKey() {
         return paramKey;
@@ -105,10 +95,18 @@ public class BrandFormFeilds extends BaseModel{
         this.brandCategory = brandCategory;
     }
 
+    public String getDisplayLabel() {
+        return displayLabel;
+    }
+
+    public void setDisplayLabel(String displayLabel) {
+        this.displayLabel = displayLabel;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("displyLabel", displyLabel)
+                .append("displayLabel", displayLabel)
                 .append("paramKey", paramKey)
                 .append("datatype", datatype)
                 .append("required", required)
