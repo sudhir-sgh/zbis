@@ -1,13 +1,13 @@
-package com.zopper.bsi.service.brand.impl;
+package com.zopper.bsi.handler.impl;
 
-import com.zopper.bsi.service.brand.BrandHandler;
+import com.zopper.bsi.handler.BrandHandler;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by sudhir on 19/5/16.
+ * Created by sudhir on 20/5/16.
  */
-@Component(value = "panasonicHandler")
-public class PanasonicHandler implements BrandHandler {
+@Component
+public class BrandHandlerImpl implements BrandHandler {
 
     @Override
     public void onboardItemForBrand(String orderId) {
@@ -23,5 +23,4 @@ public class PanasonicHandler implements BrandHandler {
     public String raiseInstallationRequestForBrand(String orderId, String itemId) {
         return null;
     }
-
 }

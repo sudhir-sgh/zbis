@@ -9,6 +9,14 @@ import javax.persistence.*;
 @Table(name = "brand_brands")
 public class Brand  extends BaseModel{
 
+    public Brand() {
+    }
+
+    public Brand(String name, String brandKey) {
+        this.name = name;
+        this.brandKey = brandKey;
+    }
+
     @Column(name = "name")
     String name;
 

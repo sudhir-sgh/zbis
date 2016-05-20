@@ -1,4 +1,4 @@
-package com.zopper.bsi.service.brand;
+package com.zopper.bsi.handler;
 
 public interface BrandHandler {
 	
