@@ -7,8 +7,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "brand_service_onboard_item")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceOnboardItem extends BaseModel {
 	
 	/**

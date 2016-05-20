@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import com.zopper.bsi.handler.BrandHandler;
+import com.zopper.bsi.models.ServiceRequest;
 import com.zopper.bsi.request.BrandServiceRequest;
 import com.zopper.bsi.response.BrandServiceResponse;
 import com.zopper.bsi.response.OrderData;
 import com.zopper.bsi.service.core.ServiceOnboardSummaryService;
+import com.zopper.bsi.service.core.ServiceRequestService;
 import com.zopper.bsi.utils.AppConstants;
 
 @Controller
@@ -29,6 +33,8 @@ public class ServiceRequestController {
 	Logger logger  = Logger.getLogger(ServiceRequestController.class);
 	
 	private @Autowired ServiceOnboardSummaryService serviceOnboardSummaryService;
+	private @Autowired ServiceRequestService serviceRequestService;
+	private @Autowired BrandHandler brandHandler;
 	
 	@RequestMapping(value = "/onboard", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
 	public @ResponseBody ResponseEntity<String> onboardOrderData(@RequestParam(value="orderId") Long orderId) {
@@ -77,8 +83,35 @@ public class ServiceRequestController {
 	public @ResponseBody ResponseEntity<BrandServiceResponse> requestService(
 			@RequestBody @Valid BrandServiceRequest brandServiceRequest, BindingResult bindingResult) 
 	{
+		logger.debug("Raise request with data: " + brandServiceRequest);
 		BrandServiceResponse brandServiceResponse = null;
+		try {
+			brandServiceResponse = brandHandler.raiseRequestForBrand(brandServiceRequest);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		logger.debug("Raise request response: " + brandServiceResponse);
 		return new ResponseEntity<BrandServiceResponse>(brandServiceResponse, HttpStatus.OK);
 	}
+	
+	/*@RequestMapping(value = "/request/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Iterable<ServiceRequest>> listAllServiceRequests() {
+		try {
+			return new ResponseEntity<Iterable<ServiceRequest>>(serviceRequestService.getAllServiceRequests(), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Iterable<ServiceRequest>>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(value = "/request/{refnum}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<ServiceRequest> getByReferenceNumber(@PathVariable(value="refnum") String referenceNumber) {
+		try {
+			return new ResponseEntity<ServiceRequest>(serviceRequestService.getByReferenceNumber(referenceNumber), HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<ServiceRequest>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}*/
 
 }

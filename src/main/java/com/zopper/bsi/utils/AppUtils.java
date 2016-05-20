@@ -1,5 +1,7 @@
 package com.zopper.bsi.utils;
 
+import java.util.UUID;
+
 import com.google.gson.Gson;
 
 /**
@@ -9,6 +11,10 @@ public class AppUtils {
 
     public static String toJson(Object object){
         return new Gson().toJson(object);
+    }
+    
+    public static String generateReferenceNumber() {
+    	return UUID.randomUUID().toString();
     }
 
 }

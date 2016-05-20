@@ -22,4 +22,15 @@ public class BrandServiceResponse {
 		this.referenceNumber = referenceNumber;
 	}
 
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("BrandServiceResponse [orderId=");
+		builder.append(orderId);
+		builder.append(", referenceNumber=");
+		builder.append(referenceNumber);
+		builder.append("]");
+		return builder.toString();
+	}
+
 }

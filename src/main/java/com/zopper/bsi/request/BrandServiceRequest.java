@@ -83,6 +83,27 @@ public class BrandServiceRequest {
 
 	public void setDefectDetails(String defectDetails) {
 		this.defectDetails = defectDetails;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("BrandServiceRequest [requestType=");
+		builder.append(requestType);
+		builder.append(", requestSource=");
+		builder.append(requestSource);
+		builder.append(", brandId=");
+		builder.append(brandId);
+		builder.append(", orderId=");
+		builder.append(orderId);
+		builder.append(", alternatePhoneNumber=");
+		builder.append(alternatePhoneNumber);
+		builder.append(", serialNumber=");
+		builder.append(serialNumber);
+		builder.append(", defectDetails=");
+		builder.append(defectDetails);
+		builder.append("]");
+		return builder.toString();
 	} 
 
 }

@@ -9,8 +9,11 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "brand_service_onboard_summary")
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ServiceOnboardSummary extends BaseModel {
 	
 	/**

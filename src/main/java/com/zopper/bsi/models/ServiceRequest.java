@@ -35,6 +35,9 @@ public class ServiceRequest extends BaseModel {
 	@Column(name = "BRAND_ID")
 	private Long brandId;
 	
+	@Column(name = "SPECIFIC_BRAND_ID")
+	private Long specificBrandId;
+	
 	@Column(name = "REFERENCE_NUMBER")
 	private String referenceNumber;
 	
@@ -88,6 +91,14 @@ public class ServiceRequest extends BaseModel {
 
 	public void setServiceOnboardSummary(ServiceOnboardSummary serviceOnboardSummary) {
 		this.serviceOnboardSummary = serviceOnboardSummary;
+	}
+
+	public Long getSpecificBrandId() {
+		return specificBrandId;
+	}
+
+	public void setSpecificBrandId(Long specificBrandId) {
+		this.specificBrandId = specificBrandId;
 	}
 	
 }

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zopper.bsi.dao.ServiceOnboardSummaryDAO;
+import com.zopper.bsi.dao.ServiceOnboardSummaryDao;
 import com.zopper.bsi.models.ServiceOnboardSummary;
 import com.zopper.bsi.models.mapper.ServiceOnboardSummaryMapper;
 import com.zopper.bsi.response.OrderData;
@@ -16,20 +16,20 @@ public class ServiceOnboardSummaryServiceImpl implements ServiceOnboardSummarySe
 	
 	Logger logger  = Logger.getLogger(ServiceOnboardSummaryServiceImpl.class);
 	
-	private @Autowired ServiceOnboardSummaryDAO serviceOnboardSummaryDAO;
+	private @Autowired ServiceOnboardSummaryDao serviceOnboardSummaryDao;
 	private @Autowired ServiceOnboardSummaryMapper serviceOnboardSummaryMapper;
 
 	@Override
 	@Transactional
 	public void save(OrderData orderData) throws Exception {
 		ServiceOnboardSummary serviceOnboardSummary = serviceOnboardSummaryMapper.from(orderData);
-		serviceOnboardSummaryDAO.save(serviceOnboardSummary);
+		serviceOnboardSummaryDao.save(serviceOnboardSummary);
 	}
 
 	@Override
 	@Transactional
 	public ServiceOnboardSummary getByOrderId(Long orderId) throws Exception {
-		return serviceOnboardSummaryDAO.findByOrderId(orderId);
+		return serviceOnboardSummaryDao.findByOrderId(orderId);
 	}
 
 }

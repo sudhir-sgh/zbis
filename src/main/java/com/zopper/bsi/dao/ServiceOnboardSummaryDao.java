@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.zopper.bsi.models.ServiceOnboardSummary;
 
-public interface ServiceOnboardSummaryDAO extends CrudRepository<ServiceOnboardSummary, Long> {
+public interface ServiceOnboardSummaryDao extends CrudRepository<ServiceOnboardSummary, Long> {
 	
 	ServiceOnboardSummary findByOrderId(Long orderId);
 
