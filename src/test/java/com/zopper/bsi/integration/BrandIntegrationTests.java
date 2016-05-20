@@ -26,10 +26,11 @@ public class BrandIntegrationTests {
 	RestTemplate template = new TestRestTemplate();
 
 	@Test
-	public void getBrands() {
+	public void onboardBrandData() {
 		Map<String, String> paramMap = new HashMap<>();
 		paramMap.put("orderId","1");
-		System.out.print(template.getForEntity("http://localhost:8999/api/service/onboard-data?orderId=1", String.class).getBody());
+		// use assert here to check status and response..
+		template.getForEntity("http://localhost:8999/api/service/onboard-data?orderId=1", String.class).getStatusCode();
 	}
 
 
