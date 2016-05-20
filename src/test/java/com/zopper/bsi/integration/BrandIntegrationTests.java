@@ -21,20 +21,15 @@ import java.util.Map;
 @SpringApplicationConfiguration(classes = {Application.class})
 @WebAppConfiguration
 @IntegrationTest("server.port:8999")   // 4
-public class IntegrationTests {
+public class BrandIntegrationTests {
 
 	RestTemplate template = new TestRestTemplate();
 
 	@Test
-	public void contextLoads() {
-
-	}
-
-	@Test
 	public void getBrands() {
-		Map<java.lang.String, java.lang.String> paramMap = new HashMap<>();
-		paramMap.put("key","1");
-		System.out.print(template.getForObject("http://localhost:8999/brand", Brand.class, paramMap));
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("orderId","1");
+		System.out.print(template.getForEntity("http://localhost:8999/api/service/onboard-data?orderId=1", String.class).getBody());
 	}
 
 

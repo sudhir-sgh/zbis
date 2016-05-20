@@ -1,6 +1,7 @@
 
 package com.zopper.bsi.response;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -84,6 +85,7 @@ import javax.annotation.Generated;
     "bundled_warranty__sales_status",
     "order_status_modified_at"
 })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
 
     @JsonProperty("comment")

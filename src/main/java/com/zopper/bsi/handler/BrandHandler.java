@@ -2,10 +2,10 @@ package com.zopper.bsi.handler;
 
 public interface BrandHandler {
 	
-	public void onboardItemForBrand(String orderId);
+	Long onboardItemForBrand(Long orderId) throws Exception;
+
+	String raiseDemoRequestForBrand(String orderId, String itemId);
 	
-	public String raiseDemoRequestForBrand(String orderId, String itemId);
-	
-	public String raiseInstallationRequestForBrand(String orderId, String itemId);
+	String raiseInstallationRequestForBrand(String orderId, String itemId);
 
 }
