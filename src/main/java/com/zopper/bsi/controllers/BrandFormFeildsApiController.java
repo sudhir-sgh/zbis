@@ -3,6 +3,7 @@ package com.zopper.bsi.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zopper.bsi.models.BrandFormFeilds;
 import com.zopper.bsi.request.BrandFormFeildsRequest;
+import com.zopper.bsi.response.BrandFormFeildsResponse;
 import com.zopper.bsi.service.core.BrandFormFeildsService;
 import com.zopper.bsi.utils.AppUtils;
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Sudhir on 19/5/16.
@@ -28,20 +30,20 @@ public class BrandFormFeildsApiController {
 
     @RequestMapping(value="/list",method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<Iterable<BrandFormFeilds>> findAll(){
-        return new ResponseEntity<Iterable<BrandFormFeilds>>(brandFormFeildsService.findAll(), HttpStatus.OK);
+    public ResponseEntity<List<BrandFormFeildsResponse>> findAll(){
+        return new ResponseEntity<List<BrandFormFeildsResponse>>(brandFormFeildsService.findAll(), HttpStatus.OK);
     }
 
     @RequestMapping(value="/{brandId}",method = RequestMethod.GET,produces="application/json")
-    @ResponseBody public ResponseEntity<Iterable<BrandFormFeilds>> list(@PathVariable(value="brandId") Long brandId){
-        return new ResponseEntity<Iterable<BrandFormFeilds>>(brandFormFeildsService.findByBrandId(brandId), HttpStatus.OK);
+    @ResponseBody public ResponseEntity<List<BrandFormFeildsResponse>> list(@PathVariable(value="brandId") Long brandId){
+        return new ResponseEntity<List<BrandFormFeildsResponse>>(brandFormFeildsService.findByBrandId(brandId), HttpStatus.OK);
     }
 
     @RequestMapping(value="/",method = RequestMethod.POST,produces="application/json")
-    @ResponseBody public ResponseEntity<BrandFormFeilds> addNew(@RequestBody @Valid BrandFormFeildsRequest brandFormFeildsRequest) throws IOException {
+    @ResponseBody public ResponseEntity<Long> addNew(@RequestBody @Valid BrandFormFeildsRequest brandFormFeildsRequest) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         BrandFormFeilds brandFormFeilds = objectMapper.readValue(AppUtils.toJson(brandFormFeildsRequest), BrandFormFeilds.class);
-        return new ResponseEntity<BrandFormFeilds>(brandFormFeildsService.save(brandFormFeilds), HttpStatus.OK);
+        return new ResponseEntity<Long>(brandFormFeildsService.save(brandFormFeilds), HttpStatus.OK);
     }
 
 }

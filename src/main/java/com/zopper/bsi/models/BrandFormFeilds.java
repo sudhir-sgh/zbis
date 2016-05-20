@@ -16,11 +16,11 @@ import javax.persistence.Table;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BrandFormFeilds extends BaseModel{
 
-    @Column(name = "form_label")
-    String label;
+    @Column(name = "form_display_label")
+    String displyLabel;
 
-    @Column(name = "form_key")
-    String key;
+    @Column(name = "form_param_key")
+    String paramKey;
 
     @Column(name = "data_type")
     FormDataType datatype;
@@ -36,22 +36,25 @@ public class BrandFormFeilds extends BaseModel{
 
     @Column(name = "brand_id")
     Long brandId;
+    @Column(name = "brand_category")
+    String brandCategory;
 
 
-    public String getLabel() {
-        return label;
+
+    public String getDisplyLabel() {
+        return displyLabel;
     }
 
-    public void setLabel(String label) {
-        this.label = label;
+    public void setDisplyLabel(String displyLabel) {
+        this.displyLabel = displyLabel;
     }
 
-    public String getKey() {
-        return key;
+    public String getParamKey() {
+        return paramKey;
     }
 
-    public void setKey(String key) {
-        this.key = key;
+    public void setParamKey(String paramKey) {
+        this.paramKey = paramKey;
     }
 
     public FormDataType getDatatype() {
@@ -94,16 +97,25 @@ public class BrandFormFeilds extends BaseModel{
         this.defaultValue = defaultValue;
     }
 
+    public String getBrandCategory() {
+        return brandCategory;
+    }
+
+    public void setBrandCategory(String brandCategory) {
+        this.brandCategory = brandCategory;
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("label", label)
-                .append("key", key)
+                .append("displyLabel", displyLabel)
+                .append("paramKey", paramKey)
                 .append("datatype", datatype)
                 .append("required", required)
                 .append("options", options)
                 .append("defaultValue", defaultValue)
                 .append("brandId", brandId)
+                .append("brandCategory", brandCategory)
                 .toString();
     }
 }

@@ -1,38 +1,26 @@
-package com.zopper.bsi.request;
+package com.zopper.bsi.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zopper.bsi.enums.FormDataType;
-import com.zopper.bsi.models.BaseModel;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by sudhir on 19/5/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BrandFormFeildsRequest{
+public class BrandFormFeildsResponse {
 
-    @NotEmpty
     String displyLabel;
-    @NotEmpty
     String paramKey;
-
-    @NotNull
     FormDataType datatype;
-    @NotNull
     Boolean required;
-
-    @NotNull
     Long brandId;
-
     String brandCategory;
-
-    String options;
+    String[] options;
     String defaultValue;
 
     public String getDisplyLabel() {
@@ -75,12 +63,22 @@ public class BrandFormFeildsRequest{
         this.brandId = brandId;
     }
 
-    public String getOptions() {
+//    public Object getOptions() {
+//        if (this.options != null && options instanceof String)
+//            return ((String) options).split(",");
+//        return options;
+//    }
+//
+//    public void setOptions(Object options) {
+//        this.options = options;
+//    }
+    public String[] getOptions() {
         return options;
     }
 
     public void setOptions(String options) {
-        this.options = options;
+        if (StringUtils.isNotEmpty(options))
+            this.options = StringUtils.split(options,",");
     }
 
     public String getDefaultValue() {

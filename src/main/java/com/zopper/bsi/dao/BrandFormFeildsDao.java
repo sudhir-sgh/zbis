@@ -11,4 +11,5 @@ import javax.transaction.Transactional;
 @Transactional
 public interface BrandFormFeildsDao extends CrudRepository<BrandFormFeilds, Long> {
     public Iterable<BrandFormFeilds> findByBrandId(Long brandId);
+    BrandFormFeilds findByBrandIdAndParamKey(Long brandId, String paramKey);
 }
