@@ -21,9 +21,10 @@ public class ServiceOnboardSummaryServiceImpl implements ServiceOnboardSummarySe
 
 	@Override
 	@Transactional
-	public void save(OrderData orderData) throws Exception {
+	public Long save(OrderData orderData) throws Exception {
 		ServiceOnboardSummary serviceOnboardSummary = serviceOnboardSummaryMapper.from(orderData);
 		serviceOnboardSummaryDao.save(serviceOnboardSummary);
+		return serviceOnboardSummary.getId();
 	}
 
 	@Override
