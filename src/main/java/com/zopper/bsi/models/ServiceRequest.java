@@ -41,7 +41,7 @@ public class ServiceRequest extends BaseModel {
 	@Column(name = "REFERENCE_NUMBER")
 	private String referenceNumber;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "BRAND_SERVICE_ONBOARD_DATA_ID")
 	private ServiceOnboardSummary serviceOnboardSummary;
 

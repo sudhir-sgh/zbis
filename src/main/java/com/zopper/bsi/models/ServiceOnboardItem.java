@@ -36,7 +36,7 @@ public class ServiceOnboardItem extends BaseModel {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "BRAND_SERVICE_ONBOARD_SUMMARY_ID")
-	ServiceOnboardSummary serviceOnboardSummary;
+	private ServiceOnboardSummary serviceOnboardSummary;
 
 	public Long getOrderItemId() {
 		return orderItemId;
@@ -78,9 +78,9 @@ public class ServiceOnboardItem extends BaseModel {
 		this.fulfilledStoreId = fulfilledStoreId;
 	}
 
-	public ServiceOnboardSummary getServiceOnboardSummary() {
-		return serviceOnboardSummary;
-	}
+//	public ServiceOnboardSummary getServiceOnboardSummary() {
+//		return serviceOnboardSummary;
+//	}
 
 	public void setServiceOnboardSummary(ServiceOnboardSummary serviceOnboardSummary) {
 		this.serviceOnboardSummary = serviceOnboardSummary;
