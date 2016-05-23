@@ -10,6 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "brand_service_onboard_summary")
@@ -58,6 +59,7 @@ public class ServiceOnboardSummary extends BaseModel {
 	private String customerAddressPincode;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "serviceOnboardSummary", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
 	private Set<ServiceOnboardItem> serviceOnboardItems;
 
 	public Long getOrderId() {
