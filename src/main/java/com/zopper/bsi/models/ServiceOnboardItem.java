@@ -7,6 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -36,6 +37,7 @@ public class ServiceOnboardItem extends BaseModel {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "BRAND_SERVICE_ONBOARD_SUMMARY_ID")
+	@JsonIgnore
 	private ServiceOnboardSummary serviceOnboardSummary;
 
 	public Long getOrderItemId() {
@@ -78,9 +80,9 @@ public class ServiceOnboardItem extends BaseModel {
 		this.fulfilledStoreId = fulfilledStoreId;
 	}
 
-//	public ServiceOnboardSummary getServiceOnboardSummary() {
-//		return serviceOnboardSummary;
-//	}
+	public ServiceOnboardSummary getServiceOnboardSummary() {
+		return serviceOnboardSummary;
+	}
 
 	public void setServiceOnboardSummary(ServiceOnboardSummary serviceOnboardSummary) {
 		this.serviceOnboardSummary = serviceOnboardSummary;
