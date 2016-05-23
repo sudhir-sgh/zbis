@@ -21,6 +21,7 @@ public class ExceptionHandler {
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ResponseBody
 	public APIException processValidationError(MethodArgumentNotValidException ex) {
+		logger.info("------------ Validation Exception  .....");
 		BindingResult result = ex.getBindingResult();
 		FieldError error = result.getFieldError();
 		logger.error(ex.getLocalizedMessage(), ex);
@@ -34,8 +35,8 @@ public class ExceptionHandler {
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public APIException handleCustomException(APIException ex) {
+		logger.info("------------APIException  .....");
 		logger.error(ex.getLocalizedMessage(), ex);
-		System.out.print("------------APIException  .....");
 		return ex;
 	}
 
@@ -43,8 +44,8 @@ public class ExceptionHandler {
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
 	public APIException generalExceptionHandler(Exception ex) {
+		logger.info("------------GLOBAL Exception  .....");
 		logger.error(ex.getLocalizedMessage(), ex);
-		System.out.print("------------Exception  .....");
 		return new APIException(HttpStatus.INTERNAL_SERVER_ERROR + "", ex.getMessage());
 	}
 
