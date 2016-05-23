@@ -1,4 +1,4 @@
-package com.zopper.bsi.exceptions;
+package com.zopper.bsi.config.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;

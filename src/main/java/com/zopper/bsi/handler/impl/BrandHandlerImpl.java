@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zopper.bsi.enums.RequestType;
-import com.zopper.bsi.exceptions.APIException;
+import com.zopper.bsi.config.exceptions.APIException;
 import com.zopper.bsi.handler.BrandHandler;
 import com.zopper.bsi.models.ServiceOnboardSummary;
 import com.zopper.bsi.request.BrandServiceRequest;

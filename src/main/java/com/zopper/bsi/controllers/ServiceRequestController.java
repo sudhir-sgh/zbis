@@ -2,6 +2,7 @@ package com.zopper.bsi.controllers;
 
 import javax.validation.Valid;
 
+import com.zopper.bsi.request.Criteria;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ import com.zopper.bsi.service.core.ServiceOnboardSummaryService;
 import com.zopper.bsi.service.core.ServiceRequestService;
 
 @Controller
-@RequestMapping("/api/service")
+@RequestMapping("/api/service-requests")
 public class ServiceRequestController {
 	
 	Logger logger  = Logger.getLogger(ServiceRequestController.class);
@@ -35,7 +36,7 @@ public class ServiceRequestController {
 	@Autowired
 	private BrandHandler brandHandler;
 
-	@RequestMapping(value = "/onboard-data", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+	@RequestMapping(value = "/onboard-data", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<java.lang.Object> onboardOrderData(@RequestParam(value="orderId") Long orderId) throws Exception {
 		try {
 			Long id = brandHandler.onboardItemForBrand(orderId);
@@ -44,23 +45,22 @@ public class ServiceRequestController {
 			logger.error("An error occurred while checking orderId presence in DB, order ID: " + orderId, e);
 			return new ResponseEntity<java.lang.Object>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-
 	}
 	
-	@RequestMapping(value = "/onboard/exists", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
-	public @ResponseBody ResponseEntity<String> isAlreadyOnboard(@RequestParam(value="orderId") Long orderId) {
-		try {
-			if(serviceOnboardSummaryService.getByOrderId(orderId) != null) {
-				return new ResponseEntity<String>(HttpStatus.CONFLICT);
-			}
-		} catch (Exception e) {
-			logger.error("An error occurred while checking orderId presence in DB, order ID: " + orderId, e);
-			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<String>(HttpStatus.OK);
-	}
+//	@RequestMapping(value = "/onboard/exists", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
+//	public @ResponseBody ResponseEntity<String> isAlreadyOnboard(@RequestParam(value="orderId") Long orderId) {
+//		try {
+//			if(serviceOnboardSummaryService.getByOrderId(orderId) != null) {
+//				return new ResponseEntity<String>(HttpStatus.CONFLICT);
+//			}
+//		} catch (Exception e) {
+//			logger.error("An error occurred while checking orderId presence in DB, order ID: " + orderId, e);
+//			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//		return new ResponseEntity<String>(HttpStatus.OK);
+//	}
 	
-	@RequestMapping(value = "/request", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<BrandServiceResponse> requestService(
 			@RequestBody @Valid BrandServiceRequest brandServiceRequest, BindingResult bindingResult) 
 	{
@@ -75,8 +75,8 @@ public class ServiceRequestController {
 		return new ResponseEntity<BrandServiceResponse>(brandServiceResponse, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/request/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody ResponseEntity<Iterable<ServiceRequest>> listAllServiceRequests() {
+	@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseEntity<Iterable<ServiceRequest>> listAllServiceRequests(@RequestBody Criteria criteria) {
 		try {
 			return new ResponseEntity<Iterable<ServiceRequest>>(serviceRequestService.getAllServiceRequests(), HttpStatus.OK);
 		} catch (Exception e) {
@@ -85,7 +85,7 @@ public class ServiceRequestController {
 		}
 	}
 	
-	@RequestMapping(value = "/request/{refnum}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{refnum}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<ServiceRequest> getByReferenceNumber(@PathVariable(value="refnum") String referenceNumber) {
 		try {
 			return new ResponseEntity<ServiceRequest>(serviceRequestService.getByReferenceNumber(referenceNumber), HttpStatus.OK);
