@@ -14,7 +14,6 @@ import com.zopper.bsi.request.BrandServiceRequest;
 import com.zopper.bsi.response.BrandServiceResponse;
 import com.zopper.bsi.service.brand.BrandRequestService;
 import com.zopper.bsi.service.core.ServiceOnboardSummaryService;
-import com.zopper.bsi.utils.AppUtils;
 
 /**
  * Created by sudhir on 20/5/16.
@@ -52,7 +51,7 @@ public class IfbService implements BrandRequestService {
     	serviceRequest.setRequestType(brandServiceRequest.getRequestType());
     	serviceRequest.setRequestSource(brandServiceRequest.getRequestSource());
     	serviceRequest.setBrandId(brandServiceRequest.getBrandId());
-    	serviceRequest.setReferenceNumber(AppUtils.generateReferenceNumber());
+    	serviceRequest.setReferenceNumber(brandServiceRequest.getReferenceNumber());
     	serviceRequest.setServiceOnboardSummary(serviceOnboardSummary);
     	serviceRequest.setSpecificBrandId(brandIfb.getId());
     	serviceRequestDao.save(serviceRequest);

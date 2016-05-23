@@ -15,69 +15,81 @@ import java.lang.reflect.Modifier;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class APIResponse {
 	
-	private Integer st;
-	private ErrorReponse er;
-	private Object rs;
-	private String msg;
+	private Integer status;
+	private String message;
+	private Object response;
+	private ErrorReponse error;
 	
 	public APIResponse() {
 	}
 	
-	public APIResponse(ErrorReponse er) {
-		this.er = er;
-		this.st = AppConstants.API.STATUS.ERROR.value;
+	public APIResponse(ErrorReponse error) {
+		this.error = error;
+		this.status = AppConstants.API.STATUS.ERROR.value;
 	}
 	
-	public APIResponse(Object rs) {
-		this.rs = rs;
-		this.st = AppConstants.API.STATUS.SUCCESS.value;
+	public APIResponse(Object response) {
+		this.response = response;
+		this.status = AppConstants.API.STATUS.SUCCESS.value;
 	}
 	
-	public APIResponse(Object rs, AppConstants.API.STATUS status, String msg) {
-		this.rs = rs;
-		this.st = status.value;
-		this.msg =  msg;
+	public APIResponse(Object response, AppConstants.API.STATUS status, String message) {
+		this.response = response;
+		this.status = status.value;
+		this.message =  message;
 	}
 
-	public APIResponse(Object rs, String msg) {
-		this.rs = rs;
-		this.st = AppConstants.API.STATUS.SUCCESS.value;
-		this.msg =  msg;
+	public APIResponse(Object response, String message) {
+		this.response = response;
+		this.status = AppConstants.API.STATUS.SUCCESS.value;
+		this.message =  message;
 	}
 
-	public Integer getSt() {
-		return st;
+	public Integer getStatus() {
+		return status;
 	}
-	public void setSt(Integer st) {
-		this.st = st;
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	public ErrorReponse getEr() {
-		return er;
+
+	public String getMessage() {
+		return message;
 	}
-	public void setEr(ErrorReponse er) {
-		this.er = er;
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
-	public Object getRs() {
-		return rs;
+
+	public Object getResponse() {
+		return response;
 	}
-	public void setRs(Object rs) {
-		this.rs = rs;
+
+	public void setResponse(Object response) {
+		this.response = response;
 	}
-	public String getMsg() {
-		return msg;
+
+	public ErrorReponse getError() {
+		return error;
 	}
-	public void setMsg(String msg) {
-		this.msg = msg;
+
+	public void setError(ErrorReponse error) {
+		this.error = error;
 	}
 
 	@Override
 	public String toString() {
-		return "APIResponse [st=" + st + ", er=" + er + ", rs=" + rs + ", msg="
-				+ msg + ", getSt()=" + getSt() + ", getEr()=" + getEr()
-				+ ", getRs()=" + getRs() + ", getMsg()=" + getMsg()
-				+ ", toJson()=" + toJson() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("APIResponse [status=");
+		builder.append(status);
+		builder.append(", message=");
+		builder.append(message);
+		builder.append(", response=");
+		builder.append(response);
+		builder.append(", error=");
+		builder.append(error);
+		builder.append("]");
+		return builder.toString();
 	}
 
 	public String toJson() {

@@ -2,6 +2,7 @@ package com.zopper.bsi.request;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.zopper.bsi.enums.RequestSource;
 import com.zopper.bsi.enums.RequestType;
@@ -20,6 +21,9 @@ public class BrandServiceRequest {
 	
 	@NotNull
 	private Long orderId;
+	
+	@JsonIgnore
+	private String referenceNumber;
 	
 	// Brand - IFB
 	private String alternatePhoneNumber;
@@ -59,6 +63,14 @@ public class BrandServiceRequest {
 
 	public void setOrderId(Long orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getReferenceNumber() {
+		return referenceNumber;
+	}
+
+	public void setReferenceNumber(String referenceNumber) {
+		this.referenceNumber = referenceNumber;
 	}
 
 	public String getAlternatePhoneNumber() {
