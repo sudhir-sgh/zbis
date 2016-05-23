@@ -1,6 +1,7 @@
 package com.zopper.bsi.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.zopper.bsi.enums.FormDataType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  * Created by sudhir on 19/5/16.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class BrandFormFeildsResponse {
 
     String displayLabel;
