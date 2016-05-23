@@ -1,5 +1,7 @@
 package com.zopper.bsi.controllers;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+import com.zopper.bsi.exceptions.APIException;
 import com.zopper.bsi.response.OrderData;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,25 @@ public class TestApiController {
 
     @Autowired
     private MailSender mailSender;
+
+    @RequestMapping(value="/exception-custom",method = RequestMethod.GET)
+    @ResponseBody
+    public String testCustomException(@RequestParam Boolean show) throws APIException {
+        if (show)
+            throw new APIException("CODE", "Custom exception works");
+        return "success";
+    }
+
+    @RequestMapping(value="/exception-global",method = RequestMethod.GET)
+    @ResponseBody
+    public String globalException(@RequestParam(required = false) Boolean show) throws APIException {
+        if (show){
+            String t = "";
+            String[] x = t.split(",");
+        }
+
+        return "success";
+    }
 
     @RequestMapping(value="/email/",method = RequestMethod.GET)
     @ResponseBody

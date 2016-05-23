@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by sudhir on 20/5/16.
  */
@@ -34,9 +36,10 @@ public class ExceptionHandler {
 	@org.springframework.web.bind.annotation.ExceptionHandler(APIException.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ResponseBody
-	public ResponseEntity<APIException> handleCustomException(APIException ex) {
+	public APIException handleCustomException(APIException ex) {
 		logger.error(ex.getLocalizedMessage(), ex);
-		return new ResponseEntity<APIException>(ex, HttpStatus.INTERNAL_SERVER_ERROR);
+		System.out.print("------------APIException  .....");
+		return ex;
 	}
 
 	@org.springframework.web.bind.annotation.ExceptionHandler(Exception.class)
@@ -44,6 +47,7 @@ public class ExceptionHandler {
 	@ResponseBody
 	public APIException generalExceptionHandler(Exception ex) {
 		logger.error(ex.getLocalizedMessage(), ex);
+		System.out.print("------------Exception  .....");
 		return new APIException(HttpStatus.INTERNAL_SERVER_ERROR + "", ex.getMessage());
 	}
 
