@@ -8,4 +8,6 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface CCWorkLogDao extends CrudRepository<CCWorkLog, Long> {
 
+    Iterable<CCWorkLog> findByServiceRequestId(Long serviceRequestId);
+
 }

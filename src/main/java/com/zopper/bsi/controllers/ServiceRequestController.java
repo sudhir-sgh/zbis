@@ -103,20 +103,4 @@ public class ServiceRequestController {
 		return new APIResponse(serviceRequest, AppConstants.API.STATUS.SUCCESS, "Success");
 	}
 
-	/*@Async
-	@RequestMapping(value = "/async/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Future<User> testAsync(@PathVariable(value="user") String user) {
-		RestTemplate restTemplate = new RestTemplate();
-		System.out.println("Looking up " + user);
-        User results = restTemplate.getForObject("https://api.github.com/users/" + user, User.class);
-        // Artificial delay of 1s for demonstration purposes
-        try {
-			Thread.sleep(3000L);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-        System.out.println("*****" + results);
-        return new AsyncResult<User>(results);
-	}*/
-
 }
