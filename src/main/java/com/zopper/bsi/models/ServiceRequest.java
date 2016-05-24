@@ -46,7 +46,7 @@ public class ServiceRequest extends BaseModel {
 	private RequestStatus requestStatus;
 
 	@Column(name = "BRAND_ID")
-	private Long brandId;
+	private String brandId;
 	
 	@Column(name = "SPECIFIC_BRAND_ID")
 	private Long specificBrandId;
@@ -82,11 +82,11 @@ public class ServiceRequest extends BaseModel {
 		this.requestSource = requestSource;
 	}
 
-	public Long getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
 
-	public void setBrandId(Long brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 

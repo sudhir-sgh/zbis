@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.zopper.bsi.enums.OrderBy;
 import com.zopper.bsi.enums.RequestSource;
+import com.zopper.bsi.enums.RequestStatus;
 import com.zopper.bsi.enums.RequestType;
 
 /**
@@ -22,7 +23,7 @@ public class Criteria {
     private Long timeStart;
     private Long timeEnd;
 
-    private String status;
+    private RequestStatus requestStatus;
     private RequestType requestType;
     private RequestSource requestSource;
     
@@ -68,11 +69,11 @@ public class Criteria {
 	public void setTimeEnd(Long timeEnd) {
 		this.timeEnd = timeEnd;
 	}
-	public String getStatus() {
-		return status;
+	public RequestStatus getRequestStatus() {
+		return requestStatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setRequestStatus(RequestStatus requestStatus) {
+		this.requestStatus = requestStatus;
 	}
 	public RequestType getRequestType() {
 		return requestType;

@@ -17,7 +17,7 @@ public class BrandServiceRequest {
 	private RequestSource requestSource;
 	
 	@NotNull
-	private Long brandId;
+	private String brandId;
 	
 	@NotNull
 	private Long orderId;
@@ -49,11 +49,11 @@ public class BrandServiceRequest {
 		this.requestSource = requestSource;
 	}
 
-	public Long getBrandId() {
+	public String getBrandId() {
 		return brandId;
 	}
 
-	public void setBrandId(Long brandId) {
+	public void setBrandId(String brandId) {
 		this.brandId = brandId;
 	}
 
