@@ -7,6 +7,7 @@ import java.util.concurrent.Future;
 
 import javax.validation.Valid;
 
+import com.zopper.bsi.request.ServiceUpdateRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -95,7 +96,13 @@ public class ServiceRequestController {
 		}
 		return new APIResponse(serviceRequest, AppConstants.API.STATUS.SUCCESS, "Success");
 	}
-	
+
+	@RequestMapping(value = "/", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody APIResponse updateServiceRequest(@RequestBody ServiceUpdateRequest serviceUpdateRequest) {
+		ServiceRequest serviceRequest = null;
+		return new APIResponse(serviceRequest, AppConstants.API.STATUS.SUCCESS, "Success");
+	}
+
 	/*@Async
 	@RequestMapping(value = "/async/{user}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Future<User> testAsync(@PathVariable(value="user") String user) {
