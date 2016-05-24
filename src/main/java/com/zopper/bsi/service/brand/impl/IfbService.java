@@ -47,7 +47,6 @@ public class IfbService implements BrandRequestService {
     	brandIfbDao.save(brandIfb);
     	
     	ServiceRequest serviceRequest = new ServiceRequest();
-    	serviceRequest.setDateOfRequest(new Date().toString());
     	serviceRequest.setRequestType(brandServiceRequest.getRequestType());
     	serviceRequest.setRequestSource(brandServiceRequest.getRequestSource());
     	serviceRequest.setBrandId(brandServiceRequest.getBrandId());

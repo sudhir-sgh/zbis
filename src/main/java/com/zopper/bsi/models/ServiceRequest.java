@@ -10,12 +10,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.zopper.bsi.enums.RequestSource;
+import com.zopper.bsi.enums.RequestStatus;
 import com.zopper.bsi.enums.RequestType;
+
+import java.time.Clock;
+import java.util.Date;
 
 @Entity
 @Table(name = "brand_service_request")
 public class ServiceRequest extends BaseModel {
-	
+
+	public ServiceRequest() {
+		this.requestStatus = RequestStatus.REQUEST_CREATED;
+		this.dateOfRequest = new Date(Clock.systemUTC().millis()).toString();
+	}
+
 	/**
 	 * 
 	 */
@@ -27,11 +36,15 @@ public class ServiceRequest extends BaseModel {
 	@Column(name = "REQUEST_TYPE")
 	@Enumerated(EnumType.STRING)
 	private RequestType requestType;
-	
+
 	@Column(name = "REQUEST_SOURCE")
 	@Enumerated(EnumType.STRING)
 	private RequestSource requestSource;
-	
+
+	@Column(name = "REQUEST_STATUS")
+	@Enumerated(EnumType.STRING)
+	private RequestStatus requestStatus;
+
 	@Column(name = "BRAND_ID")
 	private Long brandId;
 	
@@ -83,6 +96,14 @@ public class ServiceRequest extends BaseModel {
 
 	public void setReferenceNumber(String referenceNumber) {
 		this.referenceNumber = referenceNumber;
+	}
+
+	public RequestStatus getRequestStatus() {
+		return requestStatus;
+	}
+
+	public void setRequestStatus(RequestStatus requestStatus) {
+		this.requestStatus = requestStatus;
 	}
 
 	public ServiceOnboardSummary getServiceOnboardSummary() {
