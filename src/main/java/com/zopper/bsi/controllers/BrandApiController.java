@@ -2,6 +2,7 @@ package com.zopper.bsi.controllers;
 
 import com.zopper.bsi.models.Brand;
 import com.zopper.bsi.dao.BrandDao;
+import com.zopper.bsi.response.APIResponse;
 import com.zopper.bsi.service.core.BrandService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +26,19 @@ public class BrandApiController {
 
     @RequestMapping(value="/{key}",method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<Brand> sendEmail(@PathVariable(value="key") String key){
+    public APIResponse findByBrandKey(@PathVariable(value="key") String key){
         Brand brand = brandService.findByKey(key);
-        return new ResponseEntity<Brand>(brand, HttpStatus.OK);
+        return new APIResponse(brand);
     }
 
     @RequestMapping(value="/list",method = RequestMethod.GET,produces="application/json")
-    @ResponseBody public ResponseEntity<Iterable<Brand>> list(){
-        return new ResponseEntity<Iterable<Brand>>(brandService.findAll(), HttpStatus.OK);
+    @ResponseBody public APIResponse list(){
+        return new APIResponse(brandService.findAll());
     }
 
     @RequestMapping(value="/",method = RequestMethod.POST,produces="application/json")
-    @ResponseBody public ResponseEntity<Brand> addNew(@RequestBody Brand brand){
-        return new ResponseEntity<Brand>(brandDao.save(brand), HttpStatus.OK);
+    @ResponseBody public APIResponse addNew(@RequestBody Brand brand){
+        return new APIResponse(brandDao.save(brand));
     }
 
 }

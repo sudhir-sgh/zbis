@@ -1,6 +1,7 @@
 package com.zopper.bsi.controllers;
 
 import com.zopper.bsi.config.exceptions.APIException;
+import com.zopper.bsi.response.APIResponse;
 import com.zopper.bsi.response.OrderData;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,26 +26,25 @@ public class TestApiController {
 
     @RequestMapping(value="/exception-custom",method = RequestMethod.GET)
     @ResponseBody
-    public String testCustomException(@RequestParam Boolean show) throws APIException {
+    public APIResponse testCustomException(@RequestParam Boolean show) throws APIException {
         if (show)
             throw new APIException("CODE", "Custom exception works");
-        return "success";
+        return new APIResponse("success");
     }
 
     @RequestMapping(value="/exception-global",method = RequestMethod.GET)
     @ResponseBody
-    public String globalException(@RequestParam(required = false) Boolean show) throws APIException {
+    public APIResponse globalException(@RequestParam(required = false) Boolean show) throws APIException {
         if (show){
             String t = "";
             String[] x = t.split(",");
         }
-
-        return "success";
+        return new APIResponse("success");
     }
 
     @RequestMapping(value="/email/",method = RequestMethod.GET)
     @ResponseBody
-    public String sendEmail(@RequestParam(value="message") String emailMessage,
+    public APIResponse sendEmail(@RequestParam(value="message") String emailMessage,
                             @RequestParam(value="emailAddress") String emailAddress){
 
         SimpleMailMessage message = new SimpleMailMessage();
@@ -55,11 +55,11 @@ public class TestApiController {
 
         mailSender.send(message);
 
-        return "Email Sent";
+        return new APIResponse("Email Sent");
     }
 
     @RequestMapping(value="/order-data/",method = RequestMethod.GET,produces="application/json")
-    @ResponseBody public ResponseEntity<OrderData> onboardOrderData(@RequestParam(value="orderId") int id){
+    @ResponseBody public APIResponse onboardOrderData(@RequestParam(value="orderId") int id){
 
         System.out.println("Order being processed: " + id);
 
@@ -77,7 +77,7 @@ public class TestApiController {
             System.out.println(personData);
         }
 
-        return new ResponseEntity<OrderData>(personData, HttpStatus.OK);
+        return new APIResponse(personData);
     }
 
 }

@@ -3,6 +3,7 @@ package com.zopper.bsi.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zopper.bsi.models.BrandFormFeilds;
 import com.zopper.bsi.request.BrandFormFeildsRequest;
+import com.zopper.bsi.response.APIResponse;
 import com.zopper.bsi.response.BrandFormFeildsResponse;
 import com.zopper.bsi.service.core.BrandFormFeildsService;
 import com.zopper.bsi.utils.AppUtils;
@@ -30,20 +31,20 @@ public class BrandFormFeildsApiController {
 
     @RequestMapping(value="/list",method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<List<BrandFormFeildsResponse>> findAll(){
-        return new ResponseEntity<List<BrandFormFeildsResponse>>(brandFormFeildsService.findAll(), HttpStatus.OK);
+    public APIResponse findAll(){
+        return new APIResponse(brandFormFeildsService.findAll());
     }
 
     @RequestMapping(value="/{brandId}",method = RequestMethod.GET,produces="application/json")
-    @ResponseBody public ResponseEntity<List<BrandFormFeildsResponse>> list(@PathVariable(value="brandId") Long brandId){
-        return new ResponseEntity<List<BrandFormFeildsResponse>>(brandFormFeildsService.findByBrandId(brandId), HttpStatus.OK);
+    @ResponseBody public APIResponse list(@PathVariable(value="brandId") Long brandId){
+        return new APIResponse(brandFormFeildsService.findByBrandId(brandId));
     }
 
     @RequestMapping(value="/",method = RequestMethod.POST,produces="application/json")
-    @ResponseBody public ResponseEntity<Long> addNew(@RequestBody @Valid BrandFormFeildsRequest brandFormFeildsRequest) throws Exception {
+    @ResponseBody public APIResponse addNew(@RequestBody @Valid BrandFormFeildsRequest brandFormFeildsRequest) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
         BrandFormFeilds brandFormFeilds = objectMapper.readValue(AppUtils.toJson(brandFormFeildsRequest), BrandFormFeilds.class);
-        return new ResponseEntity<Long>(brandFormFeildsService.save(brandFormFeilds), HttpStatus.OK);
+        return new APIResponse(brandFormFeildsService.save(brandFormFeilds));
     }
 
 }
